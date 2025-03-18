@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "/signup", to: "users#new"   # Display sign-up form
+  post "/users", to: "users#create" # Handle form submission
   resource :session
   resources :passwords, param: :token
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
