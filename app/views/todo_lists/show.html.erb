@@ -1,0 +1,14 @@
+<% if @todo_list.present? %>
+  <h1><%= @todo_list.title %></h1>
+
+  <h2>Tasks</h2>
+  <ul>
+    <% @todo_list.tasks.each do |task| %>
+      <li><%= task.description %> - <%= task.status %></li>
+    <% end %>
+  </ul>
+
+  <%= link_to 'Add Task', new_todo_list_task_path(@todo_list) %>
+<% else %>
+  <h1>Todo List not found</h1>
+<% end %>

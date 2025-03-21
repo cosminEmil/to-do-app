@@ -1,0 +1,13 @@
+<h1>Your Todo Lists</h1>
+
+<%= link_to "New Todo List", new_todo_list_path %>
+
+<ul>
+  <% @todo_lists.each do |todo_list| %>
+    <li>
+      <%= link_to todo_list.title, todo_list_path(todo_list) %>
+      <%= link_to "Edit", edit_todo_list_path(todo_list) %> |
+      <%= button_to "Delete", todo_list, method: :delete, data: { confirm: "Are you sure?" } %>
+    </li>
+  <% end %>
+</ul>
