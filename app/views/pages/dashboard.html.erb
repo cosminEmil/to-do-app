@@ -3,8 +3,17 @@
     <h1>Dashboard</h1>
 
     <p>
-        Welcome, <%= Current.user.email_address%>
+        Welcome, <%= Current.user.email_address %>
     </p>
 
-    <%= button_to "Logout", session_path, method: :delete%>
+    <%= button_to "Logout", session_path, method: :delete %>
+
+    <h2>All Users</h2>
+    
+    <ul>
+        <% User.all.each do |user| %>
+            <li><%= user.email_address %></li>
+        <% end %>
+    </ul>
+
 </div>

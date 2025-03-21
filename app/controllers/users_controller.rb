@@ -10,7 +10,6 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id # Log the user in
       redirect_to dashboard_path, notice: "Welcome! Your account has been created."
     else
-      logger.debug @user.errors.full_messages # Log the validation errors
       render :new, status: :unprocessable_entity
     end
   end  
