@@ -1,14 +1,36 @@
-<% if @todo_list.present? %>
-  <h1><%= @todo_list.title %></h1>
+<div class="container mt-5">
+  <h1 class="mb-4"><%= @todo_list.title %></h1>
 
-  <h2>Tasks</h2>
-  <ul>
-    <% @todo_list.tasks.each do |task| %>
-      <li><%= task.description %> - <%= task.status %></li>
-    <% end %>
-  </ul>
+  <!-- Action buttons for Edit & Delete Todo List -->
+  <div class="mb-3">
+    <%= link_to "Edit", edit_todo_list_path(@todo_list), class: "btn btn-warning btn-sm" %>
+    <%= link_to "Delete", todo_list_path(@todo_list), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
+  </div>
 
-  <%= link_to 'Add Task', new_todo_list_task_path(@todo_list) %>
-<% else %>
-  <h1>Todo List not found</h1>
-<% end %>
+  <h2 class="mt-4">Tasks</h2>
+
+  <!-- Button to create a new task -->
+  <%= link_to "New Task", new_todo_list_task_path(@todo_list), class: "btn btn-success mb-3" %>
+
+  <!-- Task List -->
+  <% if @tasks.any? %>
+    <ul class="list-group">
+      <% @tasks.each do |task| %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <strong><%= task.description %></strong> 
+            <span class="badge bg-info text-dark ml-2"><%= task.status || "Pending" %></span>
+          </div>
+          <div>
+            <%= link_to "Edit", edit_todo_list_task_path(@todo_list, task), class: "btn btn-sm btn-warning mx-1" %>
+            <%= link_to "Delete", todo_list_task_path(@todo_list, task), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-danger mx-1" %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="text-muted">No tasks available. Add a new task!</p>
+  <% end %>
+
+  <%= link_to "Back to To Do Lists", todo_lists_path, class: "btn btn-primary"%>
+</div>

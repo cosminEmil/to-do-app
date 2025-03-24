@@ -6,7 +6,13 @@
         Welcome, <%= Current.user.email_address %>
     </p>
 
-    <%= button_to "Logout", session_path, method: :delete %>
+    <%= button_to "Logout", session_path, method: :delete, class: "btn btn-danger" %>
+
+    <h2>Your Todo Lists</h2>
+
+    <p>
+        <%= link_to "Manage Your Todo Lists", todo_lists_path, class: "btn btn-primary" %>
+    </p>
 
     <h2>All Users</h2>
     
